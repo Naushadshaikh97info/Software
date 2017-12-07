@@ -1,1 +1,26 @@
+http://www.dmca.com/Protection/Status.aspx?ID=f894e1f0-7e49-4103-b5e8-ab07f66e1751&refurl=https://www.dcgpac.com/packaging-products.html
+https://www.dnvgl.com/assurance/Management-Systems/index.html
+
+Seo Helping code
+SEOHelper.RenderTitle(this.Page, GetLocalResourceString("Admin.Categorys.PageTitle", true) + " | " + SettingsManager.StoreTitle, true);
+
+OMessenger chat software for pc
+
+seo helper in webpage and C#
+
+  #region BindSEO
+        public string BindSEO()
+        {
+            string seoDetail = string.Empty;
+
+            SEOHelper.RenderTitle(this.Page, GetLocalResourceString("Site.Login.PageTitle", true) + " | " + SettingsManager.GetSettingValue("Common.StoreTitle"), false);
+            seoDetail = Common.UtilityFunction.GetSeoDetail(GetLocalResourceString("SEO.Meta.LoginTitle.MetaTitle", true), "", GetLocalResourceString("SEO.Meta.LoginTitle.MetaDescription", true));
+
+            return seoDetail;
+        }
+        #endregion
+
+
+
+
 
