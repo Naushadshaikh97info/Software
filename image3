@@ -1,0 +1,140 @@
+#region ThumbnailImage
+        public void ThumbnailImage(string filename, string Extension, string OriginalFileLocation, int Height, int Width, Boolean needToFill, string dirPath)
+        {
+
+            try
+            {
+
+                HttpContext.Current.Trace.Warn("OriginalFileLocation :: " + OriginalFileLocation);
+                HttpContext.Current.Trace.Warn("Directory Path + filename :: " + dirPath + filename);
+
+                System.Drawing.Image sourceImage = System.Drawing.Image.FromFile(OriginalFileLocation);
+
+                System.Drawing.Image thumbnailImage;
+
+                System.Drawing.Image.GetThumbnailImageAbort myCallback = new System.Drawing.Image.GetThumbnailImageAbort(ThumbnailCallback);
+
+                Bitmap bitmap = new Bitmap(sourceImage);
+
+                if (sourceImage.Width < sourceImage.Height)
+                {
+                    thumbnailImage = bitmap.GetThumbnailImage(Width * sourceImage.Width / sourceImage.Height, Height, myCallback, IntPtr.Zero);
+                }
+                else
+                {
+                    thumbnailImage = bitmap.GetThumbnailImage(Width, sourceImage.Height * Height / sourceImage.Width, myCallback, IntPtr.Zero);
+                }
+
+                if (Convert.ToBoolean(ConfigurationManager.AppSettings["IsSiteLive"]))
+                {
+                    //TempFileUpload
+                    string Tempdirpath = SEOHelper.GetInsertThumbTempFileURL();
+
+                    if (!System.IO.Directory.Exists(Tempdirpath))
+                    {
+                        System.IO.Directory.CreateDirectory(Tempdirpath);
+                    }
+
+                    switch (Extension.ToUpper())
+                    {
+                        case ".JPG":
+                            {
+                                thumbnailImage.Save(Tempdirpath + filename, ImageFormat.Jpeg);
+                                break;
+                            }
+                        case ".GIF":
+                            {
+                                thumbnailImage.Save(Tempdirpath + filename, ImageFormat.Jpeg);
+                                break;
+                            }
+                        case ".BMP":
+                            {
+                                thumbnailImage.Save(Tempdirpath + filename, ImageFormat.Bmp);
+                                break;
+                            }
+                        case ".PNG":
+                            {
+                                thumbnailImage.Save(Tempdirpath + filename, ImageFormat.Png);
+                                break;
+                            }
+                        case ".JPEG":
+                            {
+                                thumbnailImage.Save(Tempdirpath + filename, ImageFormat.Jpeg);
+                                break;
+                            }
+                        case ".TIFF":
+                            {
+                                thumbnailImage.Save(Tempdirpath + filename, ImageFormat.Png);
+                                break;
+                            }
+                        case ".TIF":
+                            {
+                                thumbnailImage.Save(Tempdirpath + filename, ImageFormat.Png);
+                                break;
+                            }
+                    }
+                    //
+                    HttpContext.Current.Trace.Warn("Tempdirpath + filename :: " + Tempdirpath + filename);
+                    HttpContext.Current.Trace.Warn("dirPath + filename :: " + dirPath + filename);
+                    CommonHelper.UploadFileOnAzureStorage(Tempdirpath + filename, dirPath + filename);
+
+                    //Delete TempFile
+                    Shared.DeleteImage(Tempdirpath, filename);
+                }
+                else
+                {
+                    if (!System.IO.Directory.Exists(dirPath))
+                    {
+                        System.IO.Directory.CreateDirectory(dirPath);
+                    }
+
+                    switch (Extension.ToUpper())
+                    {
+                        case ".JPG":
+                            {
+                                thumbnailImage.Save(dirPath + filename, ImageFormat.Jpeg);
+                                break;
+                            }
+                        case ".GIF":
+                            {
+                                thumbnailImage.Save(dirPath + filename, ImageFormat.Jpeg);
+                                break;
+                            }
+                        case ".BMP":
+                            {
+                                thumbnailImage.Save(dirPath + filename, ImageFormat.Bmp);
+                                break;
+                            }
+                        case ".PNG":
+                            {
+                                thumbnailImage.Save(dirPath + filename, ImageFormat.Png);
+                                break;
+                            }
+                        case ".JPEG":
+                            {
+                                thumbnailImage.Save(dirPath + filename, ImageFormat.Jpeg);
+                                break;
+                            }
+                        case ".TIFF":
+                            {
+                                thumbnailImage.Save(dirPath + filename, ImageFormat.Png);
+                                break;
+                            }
+                        case ".TIF":
+                            {
+                                thumbnailImage.Save(dirPath + filename, ImageFormat.Png);
+                                break;
+                            }
+                    }
+                }
+                bitmap.Dispose();
+                sourceImage.Dispose();
+                thumbnailImage.Dispose();
+            }
+            catch (Exception e)
+            {
+                HttpContext.Current.Trace.Warn("Shared.ThumbnailImage Exception :: " + e.ToString());
+            }
+
+        }
+        #endregion
