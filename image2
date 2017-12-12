@@ -1,0 +1,97 @@
+using AP.Common;
+using AP.Common.Util;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace AP
+{
+    public partial class ConvertImagetoThumbnail : System.Web.UI.Page
+    {
+        #region Variable
+        int Count = 0;
+        #endregion
+
+        #region Page_Load
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            lblPage15.Text = Convert.ToString(CommonHelper.StickerQuantityPerPage(Convert.ToDecimal(1.5), Convert.ToDecimal(1.5)));
+            lblPage2.Text = Convert.ToString(CommonHelper.StickerQuantityPerPage(Convert.ToDecimal(2), Convert.ToDecimal(2)));
+            lblPage25.Text = Convert.ToString(CommonHelper.StickerQuantityPerPage(Convert.ToDecimal(2.5), Convert.ToDecimal(2.5)));
+            lblPage3.Text = Convert.ToString(CommonHelper.StickerQuantityPerPage(Convert.ToDecimal(3), Convert.ToDecimal(3)));
+            lblPage35.Text = Convert.ToString(CommonHelper.StickerQuantityPerPage(Convert.ToDecimal(3.5), Convert.ToDecimal(3.5)));
+            lblPage4.Text = Convert.ToString(CommonHelper.StickerQuantityPerPage(Convert.ToDecimal(4), Convert.ToDecimal(4)));
+
+            lblKissCut15.Text = Convert.ToString(CommonHelper.KissCutStickerQuantityPerPage(Convert.ToDecimal(1.5), Convert.ToDecimal(1.5)));
+            lblKissCut2.Text = Convert.ToString(CommonHelper.KissCutStickerQuantityPerPage(Convert.ToDecimal(2), Convert.ToDecimal(2)));
+            lblKissCut25.Text = Convert.ToString(CommonHelper.KissCutStickerQuantityPerPage(Convert.ToDecimal(2.5), Convert.ToDecimal(2.5)));
+            lblKissCut3.Text = Convert.ToString(CommonHelper.KissCutStickerQuantityPerPage(Convert.ToDecimal(3), Convert.ToDecimal(3)));
+            lblKissCut35.Text = Convert.ToString(CommonHelper.KissCutStickerQuantityPerPage(Convert.ToDecimal(3.5), Convert.ToDecimal(3.5)));
+            lblKissCut4.Text = Convert.ToString(CommonHelper.KissCutStickerQuantityPerPage(Convert.ToDecimal(4), Convert.ToDecimal(4)));
+        }
+        #endregion
+
+        #region btnSubmit_Click
+        protected void btnSubmit_Click(object sender, EventArgs e)
+        {
+            if (Directory.Exists(txtFolderPath.Text))
+            {
+                string[] dirInfo = Directory.GetFiles(txtFolderPath.Text);
+
+                foreach (string strDirectoryName in dirInfo)
+                {
+                    FolderImage objFolderImage = new FolderImage();
+                    FileInfo strdirInfo = new FileInfo(strDirectoryName);
+
+                    switch (strdirInfo.Extension.ToUpper())
+                    {
+                        case ".JPG":
+                        case ".GIF":
+                        case ".BMP":
+                        case ".PNG":
+                        case ".JPEG":
+                        case ".TIFF":
+                        case ".TIF":
+                            string lastFolderName = Path.GetFileName(Path.GetDirectoryName(txtFolderPath.Text));
+
+                            string pathToSave = txtFolderPath.Text + "/" + strdirInfo.Name;
+
+                            string pathToCreate = "C:/ThumbnailImages/" + lastFolderName + "/";
+
+                            if (!Directory.Exists(pathToCreate))
+                            {
+                                Directory.CreateDirectory(pathToCreate);
+                            }
+
+                            Shared objShared = new Shared();
+                            objShared.ThumbnailImage(strdirInfo.Name, strdirInfo.Extension, pathToSave, Convert.ToInt32(txtWidth.Text), Convert.ToInt32(txtHeight.Text), false, pathToCreate);
+                            Count++;
+                            break;
+
+                        default:
+                            break;
+                    }
+                }
+
+                if (Count > 0)
+                {
+                    divSuccess.Visible = true;
+                    divError.Visible = false;
+                    txtFolderPath.Text = string.Empty;
+                    txtWidth.Text = string.Empty;
+                    txtHeight.Text = string.Empty;
+                }
+                else
+                {
+                    divSuccess.Visible = false;
+                    divError.Visible = true;
+                }
+            }
+        }
+        #endregion
+    }
+}
