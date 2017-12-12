@@ -1,0 +1,165 @@
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ConvertImagetoThumbnail.aspx.cs" Inherits="AP.ConvertImagetoThumbnail" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>::Convert Image To Thumbnail Image::</title>
+    <!--bootstrap-->
+    <link href="<%=ConfigurationManager.AppSettings["LivePath"] %>styles/bootstrap.css" rel="stylesheet" />
+    <!--bootstrap end-->
+    <script src="<%=ConfigurationManager.AppSettings["LivePath"] %>scripts/jquery-1.8.3.js"></script>
+    <!--bootstrap-->
+    <script src="<%=ConfigurationManager.AppSettings["LivePath"] %>scripts/bootstrap.js"></script>
+    <!--bootstrap end-->
+    <script src="<%=ConfigurationManager.AppSettings["LivePath"] %>scripts/html5shiv.js"></script>
+    <script src="<%=ConfigurationManager.AppSettings["LivePath"] %>scripts/browser-selector.js"></script>
+    <meta name="robots" content="noindex, nofollow" />
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-98395052-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+</head>
+<body>
+    <form id="form1" runat="server" autocomplete="off">
+        <div id="wrapper">
+            <div class="container">
+                <div class="row" id="divSuccess" runat="server" visible="false">
+                    <div class="alert alert-success">
+                        <strong>Success!</strong> Thumbnail Images Successfully Generated. You can view In the "C:/ThumbnailImages/" Folder.
+                    </div>
+                </div>
+                <div class="row" id="divError" runat="server" visible="false">
+                    <div class="alert alert-danger">
+                        <strong>Danger!</strong> Some Errors accured....
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-default" style="border: 1px solid #ddd;">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Convert Image To Thumbnail</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="form-horizontal">
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Folder Path</label>
+                                        <div class="col-md-6">
+                                            <asp:TextBox ID="txtFolderPath" runat="server" CssClass="form-control" placeholder="Folder Path"></asp:TextBox>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <asp:RequiredFieldValidator ID="rfvFolderPath" runat="server" ForeColor="Red" ControlToValidate="txtFolderPath"
+                                                ErrorMessage="Folder Path Required" Display="Dynamic" SetFocusOnError="true"></asp:RequiredFieldValidator>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Width</label>
+                                        <div class="col-md-6">
+                                            <asp:TextBox ID="txtWidth" runat="server" CssClass="form-control" placeholder="Width"></asp:TextBox>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <asp:RequiredFieldValidator ID="rfvWidth" runat="server" ForeColor="Red" ControlToValidate="txtWidth"
+                                                ErrorMessage="Width Required" Display="Dynamic" SetFocusOnError="true"></asp:RequiredFieldValidator>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Height</label>
+                                        <div class="col-md-6">
+                                            <asp:TextBox ID="txtHeight" runat="server" CssClass="form-control" placeholder="Height"></asp:TextBox>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <asp:RequiredFieldValidator ID="rfvtxtHeight" runat="server" ForeColor="Red" ControlToValidate="txtHeight"
+                                                ErrorMessage="Height Required" Display="Dynamic" SetFocusOnError="true"></asp:RequiredFieldValidator>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">&nbsp;</label>
+                                        <div class="col-md-9">
+                                            <asp:Button ID="btnSubmit" runat="server" CssClass="btn btn-default" Text="Submit" OnClick="btnSubmit_Click" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-default" style="border: 1px solid #ddd;">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Convert Image To Thumbnail</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="form-horizontal">
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">1.5 x 1.5</label>
+                                        <div class="col-md-6">
+                                            <asp:Label ID="lblPage15" runat="server"></asp:Label>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <asp:Label ID="lblKissCut15" runat="server"></asp:Label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">2 x 2</label>
+                                        <div class="col-md-6">
+                                            <asp:Label ID="lblPage2" runat="server"></asp:Label>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <asp:Label ID="lblKissCut2" runat="server"></asp:Label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">2.5 x 2.5</label>
+                                        <div class="col-md-6">
+                                            <asp:Label ID="lblPage25" runat="server"></asp:Label>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <asp:Label ID="lblKissCut25" runat="server"></asp:Label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">3 x 3</label>
+                                        <div class="col-md-6">
+                                            <asp:Label ID="lblPage3" runat="server"></asp:Label>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <asp:Label ID="lblKissCut3" runat="server"></asp:Label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">3.5 x 3.5</label>
+                                        <div class="col-md-6">
+                                            <asp:Label ID="lblPage35" runat="server"></asp:Label>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <asp:Label ID="lblKissCut35" runat="server"></asp:Label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">4 x 4</label>
+                                        <div class="col-md-6">
+                                            <asp:Label ID="lblPage4" runat="server"></asp:Label>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <asp:Label ID="lblKissCut4" runat="server"></asp:Label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
