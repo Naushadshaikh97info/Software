@@ -1,0 +1,109 @@
+192.168.10.13\SQLEXPRESS
+
+development
+deve1q2w
+
+mvc with n tier architecture
+3 tier architecture in mvc example
+
+https://www.dcgpac.com/
+
+naushadshaikh@ais.com
+naushad#1
+
+https://stackoverflow.com/questions/5817512/how-to-serve-two-asp-net-mvc-applications-on-the-same-iis-express-instance
+
+http://www.hanselman.com/blog/WorkingWithSSLAtDevelopmentTimeIsEasierWithIISExpress.aspx
+
+https://stackoverflow.com/questions/37008369/iis-express-visual-studio-running-multiple-sites-on-the-same-port
+
+Database Name : AP_20170503
+
+http://vps.arthprint.in/
+
+Select * From AP_Category
+
+Select * From AP_ParentCategoryMapping
+
+Select CategoryID,Name From AP_Category where name = 'canvas'
+Select CategoryID,Name From AP_Category where name = 'canvas products'
+select CategoryID,Name from AP_Category where name = 'single canvas prints'
+
+Select * From AP_ParentCategoryMapping where categoryid in (433,773,215)
+
+http://localhost:14512/AdminPanelNew/LocalResources.aspx
+
+ctrlDetailMasterAddEdit
+ctrlDetailMasterList
+
+http://192.168.10.17:3031/cards/
+636359345899171639
+
+/canvas-frame-detail/
+/detail/
+
+card detail page
+CanvasFramePrintDetail.aspx
+ucCanvasFramePrintDetail.ascx
+ucCanvasDetailNew.ascx
+
+canvas_landing.aspx
+uccanvaslanding.ascx
+canvasframeprintlanding.aspx
+uccanvasframelanding.ascx
+
+banner detail page
+
+/banner-detail/
+
+CanvasDetail.aspx
+ucCanvasDetailNew.ascx
+
+SingsDetail.aspx
+
+http://192.168.10.17:3031/square-stickers/detail/
+
+http://192.168.10.17:3031/address-labels/detail/
+
+ucStickerLabelDetail.aspx  
+
+/sticker-detail/
+
+/label-detail/
+
+bannercustomize
+
+http://vps.arthprint.in/custom-framed-prints/detail/
+
+http://www.printvenue.com/customize/kara-engraved-men-wallet-elementary/pr-gen-a07-wltkaraelementary-psd
+
+https://noahbass.com/posts/angular-adding-removing-arrays
+
+Canvas
+http://www.c-sharpcorner.com/UploadFile/asmabegam/web-painting-tool-using-html-5-canvas-in-Asp-Net/
+
+http://www.printvenue.com/customize/kara-engraved-men-wallet-elementary/pr-gen-a07-wltkaraelementary-psd
+
+jquery ui draggable
+
+http://jsfiddle.net/4Vfm5/1095/
+
+https://codepen.io/wuminzhe/pen/mqdcB
+
+https://jqueryui.com/draggable/
+
+http://viralpatel.net/blogs/jquery-resizable-draggable-resize-drag-tutorial-example/
+
+
+https://www.stickeryou.com/pagemaker#
+https://codyhouse.co/demo/image-mask-effect/index.html
+https://www.jqueryscript.net/tags.php?/image%20mask/
+
+http://localhost:14512/polaroid-prints/photo-print-detail/
+
+photoeditorprint.aspx
+
+
+
+
+
