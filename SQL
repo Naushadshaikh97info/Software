@@ -1,0 +1,29 @@
+
+Fine Table
+select * from sys.tables where name like '%res%'
+
+
+Find Store Procedure
+select * 
+from 
+   sys.procedures 
+where 
+   name like '%name_of_proc%'
+
+
+Find store procedure with comment 
+select text 
+from 
+    syscomments c
+    inner join sys.procedures p on p.object_id = c.object_id
+where 
+    p.name like '%name_of_proc%'
+
+
+Find store procedure with use ansi standard version
+SELECT * 
+FROM 
+    INFORMATION_SCHEMA.ROUTINES 
+WHERE 
+    ROUTINE_NAME LIKE '%name_of_proc%'
+
