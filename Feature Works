@@ -1,1 +1,51 @@
 
+Sweet Alert Plugin
+https://sweetalert.js.org/guides/#installation
+
+Website Create Like This
+http://www.tutorialsteacher.com/csharp/csharp-list
+https://www.dotnetperls.com/
+
+Payment Integration 
+http://aravin.net/how-to-integration-ccavenue-payment-gateway-into-your-website-using-asp-net-with-screenshot/
+
+Contain Maker On line For File World
+
+Website Nominate submit on website Nominate site.
+
+website tag create like this
+http://www.jquerybyexample.net/2012/05/how-to-add-images-in-dropdown-list.html
+
+http://www.getloupe.com/create
+
+http://www.shapecollage.com/download/windows
+
+Submit your App Website Create
+Create Website Submit Your Website 
+
+google-site-verification on Website
+
+            bundles.IgnoreList.Clear();
+            bundles.UseCdn = true;
+            BundleTable.EnableOptimizations = false;
+
+            string version = GetRandomString();
+            var cdnUrl = "https://arthprintcdn.azureedge.net/{0}?v=" + version;
+			
+			  bundles.Add(new StyleBundle("~/styles/Header", string.Format(cdnUrl, "styles/Header.css")).Include(
+                "~/styles/Header.css"
+                ));
+				
+				   public static string GetRandomString()
+        {
+            string path = Path.GetRandomFileName();
+            path = path.Replace(".", "");
+            return path;
+        }
+
+Ad Colony Publisher use for filewordl app
+
+browser password lock software for pc
+
+Create My Profile Business In Google Business
+
